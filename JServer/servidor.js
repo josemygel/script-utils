@@ -1,4 +1,4 @@
-var gitSemverTags = require('git-semver-tags', [options]);
+var gitSemverTags = require('git-semver-tags', []);
  
 gitSemverTags(function(err, tags) {
   console.log(tags);
