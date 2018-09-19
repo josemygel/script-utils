@@ -40,6 +40,7 @@ var characters = mongoose.model('characters',userSchema);
 // *Cargamos el fichero app.js con la configuración de Express
 // var app = require('./app');
 
+
 var express = require('express');
 var fs = require('fs');
 var Item = require('./item');
