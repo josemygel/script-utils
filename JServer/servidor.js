@@ -1,8 +1,41 @@
 // Utilizar funcionalidades del Ecmascript 6
 'use strict'
 // Cargamos el módulo de mongoose para poder conectarnos a MongoDB
-var mongoose = require('mongoose'); 
-mongoose.connect('mongodb://127.0.0.1/characters', { useNewUrlParser: true });
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://127.0.0.1/characters', { useNewUrlParser: true }, function (err) {
+    if (err) throw err;
+
+    console.log('Successfully connected');
+});
+
+var userSchema = mongoose.Schema({
+        _id : String,
+        slot : Number,
+        title : String,
+        user : String,
+        sex : Number,
+        hair : Number,
+        color : Number,
+        maxhp : Number,
+        maxmp : Number,
+        hp : Number,
+        mp : Number,
+        level : {
+            lv : Number,
+            exp : Number
+        },
+        profession : {
+                lv : Number,
+                exp : Number
+        },
+        heroe : {
+                lv : Number,
+                exp : Number
+        }
+});
+
+var userModel = mongoose.Schema({ _id: String });
+var characters = mongoose.model('characters',userSchema);
 
 // *Cargamos el fichero app.js con la configuración de Express
 // var app = require('./app');
@@ -22,8 +55,22 @@ https.port = 4443;
 var app = express(credentials);
 app.port = 4080;
 
-app.get('/', function(req,res) {
-    res.send(new Item("iokse"));
+app.get('/users/:id', function(req,res) {
+    var nick = req.params.id;
+
+    characters.findOne({ user : nick }, function(err, character) {
+        if (err) throw err;
+
+        if (character == null) {
+            res.status(404);
+          }
+
+
+        console.log(character);
+        
+        res.status(200);
+        res.send(JSON.stringify(character, null, '<br>'))
+    });
 });
 
 https.createServer(credentials, app).listen(https.port, function () {
