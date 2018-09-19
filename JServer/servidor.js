@@ -19,6 +19,7 @@ var userSchema = mongoose.Schema({
         _id : String
 });
 
+
 var userModel = mongoose.Schema({ _id: String });
 var characters = mongoose.model('characters',userSchema);
 
