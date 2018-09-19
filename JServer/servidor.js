@@ -1,3 +1,10 @@
+var gitSemverTags = require('git-semver-tags', [options]);
+ 
+gitSemverTags(function(err, tags) {
+  console.log(tags);
+  //=> [ 'v2.0.0', 'v1.0.0' ]
+});
+
 // Utilizar funcionalidades del Ecmascript 6
 'use strict'
 // Cargamos el módulo de mongoose para poder conectarnos a MongoDB
@@ -9,29 +16,7 @@ mongoose.connect('mongodb://127.0.0.1/characters', { useNewUrlParser: true }, fu
 });
 
 var userSchema = mongoose.Schema({
-        _id : String,
-        slot : Number,
-        title : String,
-        user : String,
-        sex : Number,
-        hair : Number,
-        color : Number,
-        maxhp : Number,
-        maxmp : Number,
-        hp : Number,
-        mp : Number,
-        level : {
-            lv : Number,
-            exp : Number
-        },
-        profession : {
-                lv : Number,
-                exp : Number
-        },
-        heroe : {
-                lv : Number,
-                exp : Number
-        }
+        _id : String
 });
 
 var userModel = mongoose.Schema({ _id: String });
