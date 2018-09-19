@@ -1,5 +1,6 @@
 var express = require('express');
 var fs = require('fs');
+var Item = require('./item');
 
 var privateKey = fs.readFileSync('certs/server.key');
 var certificate = fs.readFileSync('certs/server.crt');
@@ -12,20 +13,8 @@ https.port = 4443;
 var app = express(credentials);
 app.port = 4080;
 
-class Poligono {
-    constructor(alto, ancho) {
-      this.alto = alto;
-      this.ancho = ancho;
-    }
-};
-
 app.get('/', function(req,res) {
-    var arrayPol = [];
-    for(i=0;i<50;i++)
-        arrayPol[i] = new Poligono(i,50-i);
-
-    var pol = new Poligono(1,1);
-    res.send(arrayPol);
+    res.send(new Item("iokse"));
 });
 
 https.createServer(credentials, app).listen(https.port, function () {
