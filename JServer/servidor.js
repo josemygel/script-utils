@@ -1,3 +1,12 @@
+// Utilizar funcionalidades del Ecmascript 6
+'use strict'
+// Cargamos el módulo de mongoose para poder conectarnos a MongoDB
+var mongoose = require('mongoose'); 
+mongoose.connect('mongodb://127.0.0.1/characters', { useNewUrlParser: true });
+
+// *Cargamos el fichero app.js con la configuración de Express
+// var app = require('./app');
+
 var express = require('express');
 var fs = require('fs');
 var Item = require('./item');
